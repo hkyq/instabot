@@ -52,6 +52,14 @@ class API(object):
 
         self.last_json = None
 
+    def get_media_id(self, media_url):
+        req = requests.get('https://api.instagram.com/oembed/?url={}'.format(media_url))
+        try:
+            media_id = req.json()['media_id']
+            return media_id
+        except:
+            return False
+        
     def set_user(self, username, password):
         self.username = username
         self.password = password
